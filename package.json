@@ -1,0 +1,12 @@
+{
+  "name": "dsandbox-typescript-server",
+  "scripts": {
+    "start": "npx tsx /app/src/snippet.ts"
+  },
+  "dependencies": {
+    "tsx": "^4.17.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}
