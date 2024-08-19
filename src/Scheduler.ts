@@ -4,7 +4,7 @@ import Tracer from "./tracers/Tracer";
 export default class Scheduler {
   private readonly tracers: Tracer[];
 
-  constructor(tracers: Tracer[]) {
+  constructor(...tracers: Tracer[]) {
     this.tracers = tracers;
   }
 
