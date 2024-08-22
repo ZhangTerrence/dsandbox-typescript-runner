@@ -1,5 +1,5 @@
-import type { Schedule } from "./types";
 import Tracer from "./tracers/Tracer";
+import { type Schedule } from "./types";
 
 export default class Scheduler {
   private readonly tracers: Tracer[];
@@ -15,7 +15,7 @@ export default class Scheduler {
       schedules.push({
         title: tracer.title,
         renderer: tracer.renderer,
-        states: tracer.states,
+        states: tracer.states.map((state) => JSON.stringify(state)),
       });
     }
 

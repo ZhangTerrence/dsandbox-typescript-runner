@@ -16,5 +16,5 @@ export type TracerStates = Array1DTracerStates | LogTracerStates;
 export type Schedule = {
   title: string;
   renderer: Renderers;
-  states: TracerStates;
+  states: string[];
 };

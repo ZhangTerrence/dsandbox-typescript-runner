@@ -1,5 +1,5 @@
-import type { TracerStates } from "../types";
 import { Renderers } from "../types";
+import { type TracerStates } from "../types";
 
 export default abstract class Tracer {
   readonly title: string;

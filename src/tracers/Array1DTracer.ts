@@ -1,5 +1,5 @@
-import { Array1DTracerStates, ArrayNode, Renderers } from "../types";
 import Tracer from "./Tracer";
+import { type Array1DTracerStates, type ArrayNode, Renderers } from "../types";
 
 export default class Array1DTracer extends Tracer {
   private array: ArrayNode[];

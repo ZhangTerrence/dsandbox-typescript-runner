@@ -1,5 +1,5 @@
-import { LogTracerStates, Renderers } from "../types";
 import Tracer from "./Tracer";
+import { type LogTracerStates, Renderers } from "../types";
 
 export default class LogTracer extends Tracer {
   readonly states: LogTracerStates;
