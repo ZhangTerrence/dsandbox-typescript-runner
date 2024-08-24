@@ -14,7 +14,7 @@ export default class LogTracer extends Tracer {
   }
 
   override nop(): void {
-    this.states.push(null);
+    return;
   }
 
   /**

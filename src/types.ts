@@ -9,8 +9,8 @@ export type ArrayNode = {
   changed: boolean;
 };
 
-export type Array1DTracerStates = (ArrayNode[] | null)[];
-export type LogTracerStates = (string | null)[];
+export type Array1DTracerStates = ArrayNode[][];
+export type LogTracerStates = string[];
 export type TracerStates = Array1DTracerStates | LogTracerStates;
 
 export type Schedule = {

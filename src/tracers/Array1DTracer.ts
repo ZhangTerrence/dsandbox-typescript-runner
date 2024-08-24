@@ -16,7 +16,7 @@ export default class Array1DTracer extends Tracer {
   }
 
   override nop(): void {
-    this.states.push(null);
+    this.captureState();
   }
 
   /**
