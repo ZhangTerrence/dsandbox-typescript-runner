@@ -1,9 +1,9 @@
 import Tracer from "./Tracer";
-import { type Array1DTracerStates, type ArrayNode, Renderers } from "../types";
+import { Renderers, type Array1DState, type States } from "../types";
 
 export default class Array1DTracer extends Tracer {
-  private array: ArrayNode[];
-  readonly states: Array1DTracerStates;
+  private array: Array1DState;
+  readonly states: States;
 
   constructor(title: string) {
     super(title, Renderers.Array1DRenderer);
@@ -11,8 +11,11 @@ export default class Array1DTracer extends Tracer {
     this.states = [];
   }
 
-  override captureState(): void {
-    this.states.push(structuredClone(this.array));
+  override captureState(metadata: Record<string, unknown> = {}): void {
+    this.states.push({
+      data: structuredClone(this.array),
+      metadata: metadata,
+    });
   }
 
   override nop(): void {
@@ -24,72 +27,46 @@ export default class Array1DTracer extends Tracer {
    * @param array The array to be traced.
    */
   setArray(array: number[]): void {
-    this.array = array.map((n) => {
-      return {
-        value: n,
-        selected: false,
-        changed: false,
-      };
-    });
+    this.array = array;
   }
 
   /**
    * Selects all the nodes at the given indexes in the array.
    * @param indexes The indexes of the nodes to be selected.
-   * @param capture Whether to capture the current state.
+   * @param metadata Additional data to attach to current state.
    */
-  select(indexes: number[], capture = true): void {
-    for (const i of indexes) {
-      this.array[i].selected = true;
-    }
-    if (capture) {
-      this.captureState();
-    }
-  }
-
-  /**
-   * Unselects all the nodes at the given indexes in the array.
-   * @param indexes The indexes of the nodes to be unselected.
-   * @param capture Whether to capture the current state.
-   */
-  unselect(indexes: number[], capture = true): void {
-    for (const i of indexes) {
-      this.array[i].selected = false;
-    }
-    if (capture) {
-      this.captureState();
-    }
+  select(indexes: number[], metadata: Record<string, unknown> = {}): void {
+    this.captureState({
+      select: indexes,
+      ...metadata,
+    });
   }
 
   /**
    * Updates the value of the node at the given index.
    * @param i The index of the node to be changed.
    * @param value The new value the node should be updated to.
-   * @param capture Whether to capture the current state.
+   * @param metadata Additional data to attach to current state.
    */
-  update(i: number, value: number, capture = true): void {
-    this.array[i].value = value;
-    this.array[i].changed = true;
-    if (capture) {
-      this.captureState();
-    }
-    this.array[i].changed = false;
+  update(i: number, value: number, metadata: Record<string, unknown> = {}): void {
+    this.array[i] = value;
+    this.captureState({
+      update: [i],
+      ...metadata,
+    });
   }
 
   /**
    * Swaps the values of the nodes at the given indexes.
    * @param i The index of the first node.
    * @param j The index of the second node.
-   * @param capture Whether to capture the current state.
+   * @param metadata Additional data to attach to current state.
    */
-  swap(i: number, j: number, capture = true): void {
+  swap(i: number, j: number, metadata: Record<string, unknown> = {}): void {
     [this.array[i], this.array[j]] = [this.array[j], this.array[i]];
-    this.array[i].changed = true;
-    this.array[j].changed = true;
-    if (capture) {
-      this.captureState();
-    }
-    this.array[i].changed = false;
-    this.array[j].changed = false;
+    this.captureState({
+      update: [i, j],
+      ...metadata,
+    });
   }
 }

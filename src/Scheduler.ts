@@ -8,7 +8,7 @@ export default class Scheduler {
     this.tracers = tracers;
   }
 
-  generateSchedules(): Schedule[] {
+  run(): void {
     const schedules: Schedule[] = [];
 
     for (const tracer of this.tracers) {
@@ -19,6 +19,6 @@ export default class Scheduler {
       });
     }
 
-    return schedules;
+    console.log(JSON.stringify(schedules, null, 2));
   }
 }

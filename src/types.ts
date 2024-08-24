@@ -3,15 +3,14 @@ export enum Renderers {
   LogRenderer = "LogRenderer",
 }
 
-export type ArrayNode = {
-  value: number;
-  selected: boolean;
-  changed: boolean;
-};
+export type Array1DState = number[];
+export type LogState = string;
 
-export type Array1DTracerStates = ArrayNode[][];
-export type LogTracerStates = string[];
-export type TracerStates = Array1DTracerStates | LogTracerStates;
+export type State = {
+  data: Array1DState | LogState;
+  metadata: Record<string, unknown>;
+};
+export type States = State[];
 
 export type Schedule = {
   title: string;

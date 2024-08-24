@@ -1,10 +1,10 @@
 import { Renderers } from "../types";
-import { type TracerStates } from "../types";
+import { type States } from "../types";
 
 export default abstract class Tracer {
   readonly title: string;
   readonly renderer: Renderers;
-  readonly states: TracerStates;
+  readonly states: States;
 
   protected constructor(title: string, renderer: Renderers) {
     this.title = title;
@@ -14,8 +14,9 @@ export default abstract class Tracer {
 
   /**
    * Captures the current state of the tracer.
+   * @param metadata Additional data to attach to current state.
    */
-  abstract captureState(): void;
+  abstract captureState(metadata: Record<string, unknown>): void;
 
   /**
    * Adds a nop state to the tracer.

@@ -1,8 +1,8 @@
 import Tracer from "./Tracer";
-import { type LogTracerStates, Renderers } from "../types";
+import { Renderers, type States } from "../types";
 
 export default class LogTracer extends Tracer {
-  readonly states: LogTracerStates;
+  readonly states: States;
 
   constructor(title: string) {
     super(title, Renderers.LogRenderer);
@@ -22,6 +22,9 @@ export default class LogTracer extends Tracer {
    * @param message The message.
    */
   print(message: string): void {
-    this.states.push(message);
+    this.states.push({
+      data: message,
+      metadata: {},
+    });
   }
 }
