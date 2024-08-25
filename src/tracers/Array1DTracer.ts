@@ -37,7 +37,7 @@ export default class Array1DTracer extends Tracer {
    */
   select(indexes: number[], metadata: Record<string, unknown> = {}): void {
     this.captureState({
-      select: indexes,
+      selected: indexes,
       ...metadata,
     });
   }
@@ -51,7 +51,7 @@ export default class Array1DTracer extends Tracer {
   update(i: number, value: number, metadata: Record<string, unknown> = {}): void {
     this.array[i] = value;
     this.captureState({
-      update: [i],
+      updated: [i],
       ...metadata,
     });
   }
@@ -65,7 +65,7 @@ export default class Array1DTracer extends Tracer {
   swap(i: number, j: number, metadata: Record<string, unknown> = {}): void {
     [this.array[i], this.array[j]] = [this.array[j], this.array[i]];
     this.captureState({
-      update: [i, j],
+      updated: [i, j],
       ...metadata,
     });
   }
