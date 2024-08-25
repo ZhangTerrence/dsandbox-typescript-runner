@@ -1,12 +1,13 @@
 import Tracer from "./Tracer";
-import { Renderers, type Array1DState, type States } from "../types";
+import { type Array1DState, type States } from "../types";
+import { Renderers } from "../constants.ts";
 
 export default class Array1DTracer extends Tracer {
   private array: Array1DState;
-  readonly states: States;
+  states: States;
 
-  constructor(title: string) {
-    super(title, Renderers.Array1DRenderer);
+  constructor(title: string, renderer = Renderers.Array1DRenderer) {
+    super(title, renderer);
     this.array = [];
     this.states = [];
   }

@@ -1,11 +1,12 @@
 import Tracer from "./Tracer";
-import { Renderers, type States } from "../types";
+import { type States } from "../types";
+import { Renderers } from "../constants.ts";
 
 export default class LogTracer extends Tracer {
-  readonly states: States;
+  states: States;
 
-  constructor(title: string) {
-    super(title, Renderers.LogRenderer);
+  constructor(title: string, renderer = Renderers.LogRenderer) {
+    super(title, renderer);
     this.states = [];
   }
 

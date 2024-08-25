@@ -1,5 +1,5 @@
-import { Renderers } from "../types";
 import { type States } from "../types";
+import { Renderers } from "../constants.ts";
 
 export default abstract class Tracer {
   readonly title: string;

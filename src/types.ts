@@ -1,7 +1,4 @@
-export enum Renderers {
-  Array1DRenderer = "Array1DRenderer",
-  LogRenderer = "LogRenderer",
-}
+import { Renderers } from "./constants.ts";
 
 export type Array1DState = number[];
 export type LogState = string;
