@@ -1,5 +1,5 @@
 import Array1DTracer from "./Array1DTracer.ts";
-import { Renderers } from "../constants.ts";
+import { Renderers } from "../Runner.ts";
 
 export default class ChartTracer extends Array1DTracer {
   constructor(title: string, renderer = Renderers.ChartRenderer) {

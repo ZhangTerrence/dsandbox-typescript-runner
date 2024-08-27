@@ -1,6 +1,5 @@
 import Tracer from "./Tracer";
-import { type States } from "../types";
-import { Renderers } from "../constants.ts";
+import { Renderers, type States } from "../Runner.ts";
 
 export default class LogTracer extends Tracer {
   states: States;

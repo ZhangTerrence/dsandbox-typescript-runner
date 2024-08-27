@@ -1,6 +1,5 @@
 import Tracer from "./Tracer";
-import { type Array1DState, type States } from "../types";
-import { Renderers } from "../constants.ts";
+import { type Array1DState, Renderers, type States } from "../Runner.ts";
 
 export default class Array1DTracer extends Tracer {
   private array: Array1DState;
@@ -28,7 +27,7 @@ export default class Array1DTracer extends Tracer {
    * @param array The array to be traced.
    */
   setArray(array: number[]): void {
-    this.array = array;
+    this.array = structuredClone(array);
   }
 
   /**

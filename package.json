@@ -1,5 +1,5 @@
 {
-  "name": "dsandbox-typescript-server",
+  "name": "dsandbox-typescript-runner",
   "scripts": {
     "start": "npx tsx /app/src/snippet.ts"
   },
