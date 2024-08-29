@@ -17,24 +17,24 @@ export type States = {
 export type Output = {
   title: string;
   renderer: Renderers;
-  states: States;
+  states: string[];
 };
 
-export class Runner {
+export default class Runner {
   private readonly tracers: Tracer[];
 
   constructor(...tracers: Tracer[]) {
     this.tracers = tracers;
   }
 
-  runSnippet(): void {
+  runSnippets(): void {
     const output: Output[] = [];
 
     for (const tracer of this.tracers) {
       output.push({
         title: tracer.title,
         renderer: tracer.renderer,
-        states: tracer.states
+        states: tracer.states.map(e => JSON.stringify(e))
       });
     }
 
