@@ -17,7 +17,7 @@ export type States = {
 export type Output = {
   title: string;
   renderer: Renderers;
-  states: string[];
+  states: string;
 };
 
 export default class Runner {
@@ -34,7 +34,7 @@ export default class Runner {
       output.push({
         title: tracer.title,
         renderer: tracer.renderer,
-        states: tracer.states.map(e => JSON.stringify(e))
+        states: JSON.stringify(tracer.states)
       });
     }
 
