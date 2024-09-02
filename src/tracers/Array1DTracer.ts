@@ -1,16 +1,19 @@
 import Tracer from "./Tracer";
-import { type Array1DState, Renderers, type States } from "../Runner.ts";
+import { Renderer, type Array1DState } from "../utilities.ts";
 
 export default class Array1DTracer extends Tracer {
   private array: Array1DState;
-  states: States;
 
-  constructor(title: string, renderer = Renderers.Array1DRenderer) {
-    super(title, renderer);
+  constructor(title: string) {
+    super(title);
+    this.renderer = Renderer.Array1DRenderer;
     this.array = [];
-    this.states = [];
   }
 
+  /**
+   * Captures the current state of the tracer.
+   * @param metadata Additional data to attach to current state.
+   */
   override captureState(metadata: Record<string, unknown> = {}): void {
     this.states.push({
       data: structuredClone(this.array),
@@ -18,6 +21,9 @@ export default class Array1DTracer extends Tracer {
     });
   }
 
+  /**
+   * Adds a nop state to the tracer.
+   */
   override nop(): void {
     this.captureState();
   }
@@ -31,8 +37,8 @@ export default class Array1DTracer extends Tracer {
   }
 
   /**
-   * Selects all the nodes at the given indexes in the array.
-   * @param indexes The indexes of the nodes to be selected.
+   * Selects all the elements at the given indexes in the array.
+   * @param indexes The indexes of the elements to be selected.
    * @param metadata Additional data to attach to current state.
    */
   select(indexes: number[], metadata: Record<string, unknown> = {}): void {
@@ -43,9 +49,9 @@ export default class Array1DTracer extends Tracer {
   }
 
   /**
-   * Updates the value of the node at the given index.
-   * @param i The index of the node to be changed.
-   * @param value The new value the node should be updated to.
+   * Updates the value of the element at the given index.
+   * @param i The index of the element to be changed.
+   * @param value The new value the element should be updated to.
    * @param metadata Additional data to attach to current state.
    */
   update(i: number, value: number, metadata: Record<string, unknown> = {}): void {
@@ -57,9 +63,9 @@ export default class Array1DTracer extends Tracer {
   }
 
   /**
-   * Swaps the values of the nodes at the given indexes.
-   * @param i The index of the first node.
-   * @param j The index of the second node.
+   * Swaps the values of the elements at the given indexes.
+   * @param i The index of the first element.
+   * @param j The index of the second element.
    * @param metadata Additional data to attach to current state.
    */
   swap(i: number, j: number, metadata: Record<string, unknown> = {}): void {

@@ -1,24 +1,33 @@
 import Tracer from "./Tracer";
-import { Renderers, type States } from "../Runner.ts";
+import { Renderer } from "../utilities.ts";
 
 export default class LogTracer extends Tracer {
-  states: States;
-
-  constructor(title: string, renderer = Renderers.LogRenderer) {
-    super(title, renderer);
-    this.states = [];
+  constructor(title: string) {
+    super(title);
+    this.renderer = Renderer.LogRenderer;
   }
 
-  override captureState(): void {
+  /**
+   * Captures the current state of the tracer.
+   *
+   * NOTE: This method does nothing in LogTracer.
+   * @param _ Additional data to attach to current state.
+   */
+  override captureState(_: Record<string, unknown>): void {
     return;
   }
 
+  /**
+   * Adds a nop state to the tracer.
+   *
+   * NOTE: This method does nothing in LogTracer.
+   */
   override nop(): void {
     return;
   }
 
   /**
-   * Adds message to the tracer's states.
+   * Adds a log to be printed later.
    * @param message The message.
    */
   print(message: string): void {

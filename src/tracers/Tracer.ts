@@ -1,14 +1,26 @@
-import { Renderers, type States } from "../Runner.ts";
+import { Renderer, type Renderer as RendererType, type States } from "../utilities.ts";
 
 export default abstract class Tracer {
-  readonly title: string;
-  readonly renderer: Renderers;
-  readonly states: States;
+  protected readonly title: string;
+  protected renderer: RendererType;
+  protected states: States;
 
-  protected constructor(title: string, renderer: Renderers) {
+  protected constructor(title: string) {
     this.title = title;
-    this.renderer = renderer;
+    this.renderer = Renderer.Base;
     this.states = [];
+  }
+
+  getTitle(): string {
+    return this.title;
+  }
+
+  getRenderer(): RendererType {
+    return this.renderer;
+  }
+
+  getStates(): States {
+    return this.states;
   }
 
   /**

@@ -1,12 +1,13 @@
 {
   "name": "dsandbox-typescript-runner",
   "scripts": {
-    "start": "npx tsx /app/src/snippet.ts"
+    "start": "npx tsx /app/src/runner.ts"
   },
   "dependencies": {
     "tsx": "^4.17.0"
   },
   "devDependencies": {
+    "@types/node": "^22.5.1",
     "prettier": "^3.3.3"
   }
 }
